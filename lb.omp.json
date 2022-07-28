@@ -1,0 +1,122 @@
+{
+    "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+    "blocks": [
+      {
+        "alignment": "left",
+        "segments": [
+          {
+            "background": "#a313a8",
+            "foreground": "#b3a318",
+            "properties": {
+              "root_icon": "\u26a1"
+            },
+            "style": "plain",
+            "template": " \uf0e7 ",
+            "type": "root"
+          },
+          {
+            "background": "transparent",
+            "foreground": "#ffffff",
+            "style": "plain",
+            "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} ",
+            "type": "os"
+          },
+          {
+            "background": "#C85300",
+            "foreground": "#ffffff",
+            "leading_diamond": "<transparent,#C85300>\ue0b0</>",
+            "properties": {
+              "folder_icon": "\uf6d7",
+              "folder_separator_icon": " <transparent>/</> ",
+              "home_icon": "\uf7db",
+              "style": "agnoster"
+            },
+            "style": "diamond",
+            "template": " {{ .Path }} ",
+            "trailing_diamond": "\ue0b0",
+            "type": "path"
+          },
+          {
+            "background": "#00C853",
+            "background_templates": [
+              "{{ if or (.Working.Changed) (.Staging.Changed) }}#ffa629{{ end }}",
+              "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#FFCC80{{ end }}",
+              "{{ if gt .Ahead 0 }}#B388FF{{ end }}",
+              "{{ if gt .Behind 0 }}#B388FF{{ end }}"
+            ],
+            "foreground": "#000000",
+            "powerline_symbol": "\ue0b0",
+            "properties": {
+              "fetch_stash_count": true
+            },
+            "style": "powerline",
+            "template": " {{ .HEAD }} {{ .BranchStatus }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 <#FF6F00>{{ .Staging.String }}</>{{ end }}{{ if gt .StashCount 0}} \uf692 {{ .StashCount }}{{ end }}{{ if gt .WorktreeCount 0}} \uf1bb {{ .WorktreeCount }}{{ end }} ",
+            "type": "git"
+          },
+          {
+            "background": "#505050",
+            "foreground": "#ffffff",
+            "leading_diamond": "<transparent,#505050>\ue0b0</>",
+            "properties": {
+              "style": "dallas",
+              "threshold": 0
+            },
+            "style": "diamond",
+            "template": " {{ .FormattedMs }}s ",
+            "trailing_diamond": "\ue0b0",
+            "type": "executiontime"
+          },
+          {
+            "background": "#910000",
+            "foreground": "#ffffff",
+            "powerline_symbol": "\ue0b0",
+            "style": "powerline",
+            "template": "<transparent> \uf12a</> {{ if gt .Code 0 }}\uf00d {{ .Meaning }}{{ else }}\uf42e{{ end }} ",
+            "type": "exit"
+          }
+        ],
+        "type": "prompt"
+      },
+      {
+        "alignment": "right",
+        "segments": [
+          {
+            "background": "#252525",
+            "foreground": "#dddddd",
+            "leading_diamond": "<transparent,#252525>\ue0b0</>",
+            "properties": {
+              "time_format": "15:04:05"
+            },
+            "style": "diamond",
+            "template": " {{ .CurrentDate | date .Format }} ",
+            "trailing_diamond": "\ue0b4",
+            "type": "time"
+          }
+        ],
+        "type": "prompt"
+      },
+      {
+        "alignment": "left",
+        "newline": true,
+        "segments": [
+          {
+            "foreground": "#ffffff",
+            "foreground_templates": [
+              "{{ if gt .Code 0 }}#ff0000{{ end }}"
+            ],
+            "properties": {
+              "always_enabled": true
+            },
+            "style": "plain",
+            "template": "\u276f ",
+            "type": "exit"
+          }
+        ],
+        "type": "prompt"
+      }
+    ],
+    "console_title_template": "{{if .Root}} \u26a1 {{end}}{{.Folder | replace \"~\" \"🏚\" }} @ {{.Host}}",
+    "osc99": true,
+    "version": 2
+  }
+  
